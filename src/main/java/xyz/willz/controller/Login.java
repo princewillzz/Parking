@@ -2,6 +2,7 @@ package xyz.willz.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import xyz.willz.dao.AdminParkingDao;
 import xyz.willz.dao.LoginDao;
 
 
@@ -28,8 +30,21 @@ public class Login extends HttpServlet {
 		System.out.println(is_valid);
 		if(is_valid) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", username);
-			response.sendRedirect("index.jsp");
+			
+			if(buyer_seller.equals("seller")) {	
+				System.out.println("A Seller");
+				session.removeAttribute("user");
+				session.setAttribute("admin", username);
+				
+				response.sendRedirect("admin");
+				return;
+			} else {
+				System.out.println("A Customer");
+				session.setAttribute("user", username);
+				session.removeAttribute("admin");
+				response.sendRedirect("index.jsp");
+			}
+			
 			return;
 		}
 		

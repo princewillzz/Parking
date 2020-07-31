@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter({"/bookparking", "/confirmation.jsp"})
+
+
+@WebFilter({"/bookparking", "/confirmation.jsp", "/admin"})
 public class IsLoggedIn implements Filter {
 
 	@Override
@@ -24,13 +26,14 @@ public class IsLoggedIn implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		
-		if(session.getAttribute("user") == null) {
-			System.out.println("No");
-			res.sendRedirect("login.jsp");
-			return ;
+		if(session.getAttribute("user") != null || session.getAttribute("admin") != null) {
+			System.out.println("yes");
+			chain.doFilter(request, response);
+			return;
 		}
-		System.out.println("yes");
-		chain.doFilter(request, response);
+		System.out.println("No");
+		res.sendRedirect("login.jsp");
+		return ;
 		
 	}
 	 

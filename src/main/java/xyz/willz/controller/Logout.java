@@ -16,13 +16,12 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") == null) 
-			return;
-		
+		System.out.println("Logout");
 		session.removeAttribute("user");
+		session.removeAttribute("admin");
+		System.out.println("logged out");
 		response.sendRedirect("index.jsp");
 		
 	}
-
 
 }

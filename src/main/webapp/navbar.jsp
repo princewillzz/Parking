@@ -10,7 +10,7 @@
         <a href="index.jsp" id="homeNavLink" class="nav-link text-white">Home</a>
       </li>
       <li class="nav-item">
-		<% if(session.getAttribute("user") != null) { %>
+		<% if(session.getAttribute("user") != null || session.getAttribute("admin") != null) { %>
 			<a href="logout" class="nav-link text-white">LogOut</a>
 		<% } else { %>
 			<a href="login.jsp" class="nav-link text-white">Sign In</a>

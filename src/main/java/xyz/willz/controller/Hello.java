@@ -25,6 +25,7 @@ public class Hello extends HttpServlet {
 		out.println(sess.getAttribute("user"));
 		System.out.println("In Login: " + sess.getAttribute("user"));
 		
+		System.out.println("In Hello");
 	}
 
 
