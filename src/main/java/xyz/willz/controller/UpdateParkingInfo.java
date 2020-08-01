@@ -1,7 +1,6 @@
 package xyz.willz.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,38 +11,59 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import xyz.willz.dao.AdminParkingDao;
 import xyz.willz.entities.AdminParking;
 
 @WebServlet("/updateparking")
 public class UpdateParkingInfo extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Integer id = Integer.valueOf((String)request.getAttribute("id"));
 		try{
 			Integer id = Integer.valueOf(request.getParameter("id"));
 			HttpSession session = request.getSession();
+			
 			List<AdminParking> allData = (List<AdminParking>)session.getAttribute("parkingDetails");
+			System.out.println("Data: "+allData);
 			AdminParking data = allData.get(id);
+			
 			session.setAttribute("dataToBeUpdated", data);
+			System.out.println("preprocesses " + id);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("updateparking.jsp");
+			rd.forward(request, response);
+			return;
+			
 		} catch(Exception e) {
-			System.out.println("Error");
-			response.sendRedirect("index.jsp");
+			System.out.println("Error in updateParking");
+			response.sendRedirect("admin"); 
 		}
-		System.out.println("preprocesses");
-		try {
-//			RequestDispatcher rd = request.getRequestDispatcher("updateparking.jsp");
-//			rd.forward(request, response);
-			response.sendRedirect("updateparking.jsp");
-		} catch(Exception e) {
-			System.out.println("Error dispatcher");
-		}
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("About to update Data");
+		try {
+			final Integer parkingId = Integer.parseInt(request.getParameter("parkingId"));
+			final String parkingName = request.getParameter("parkingName");
+			final Integer vacant = Integer.valueOf(request.getParameter("vacant"));
+			final Integer occupied = Integer.valueOf(request.getParameter("occupied"));
+			final Integer total = Integer.valueOf(request.getParameter("total"));
+			
+			AdminParkingDao adminParkingDao = new AdminParkingDao();
+			
+			adminParkingDao.update(parkingId, parkingName, vacant, occupied, total);
+
+			System.out.println("All Updated");
+		} catch(Exception e) {
+			System.out.println("Something Wrong");
+		}
 		
+		System.out.println("Updated Data and redirecting now");
 		response.sendRedirect("admin");
 	}
 }

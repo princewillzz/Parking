@@ -39,16 +39,16 @@
         </thead>
         <tbody>
  
-        <% for(int i = 0; i < 3; i++){ %>	
+        <% for(int i = 0; i < allData.size(); i++){ %>	
           <tr>
-            <th scope="row"><%= i %></th>
+            <th scope="row"><%= i+1 %></th>
             <td><%= allData.get(i).getParkingName() %></td>
             <td><%= allData.get(i).getLatitude() %></td>
             <td><%= allData.get(i).getLongitude() %></td>
             <td><%= allData.get(i).getVacant() %></td>
             <td><%= allData.get(i).getOccupied() %></td>
             <td><%= allData.get(i).getTotal() %></td>
-            <td><button type="button" class="btn btn-success"><a href="updateparking?id=<%= allData.get(i).getId() %>" style="color: white;">Update</a></button></td>
+            <td><a href="updateparking?id=<%= i %>" style="color: white;"><button type="button" class="btn btn-success">Update</button></a></td>
           </tr>
           <% } %>
           
@@ -59,6 +59,10 @@
       		<h1>No Details Found</h1>
       <% } %>
 	
+		<div class="py-3 ">
+			<a href="addparking" style="color: white;"><button type="button" class="btn btn-primary my-3">Add Parking</button></a>
+		</div>
+		
 	</main>
 
 		<!-- JS, Popper.js, and jQuery -->

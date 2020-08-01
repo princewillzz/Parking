@@ -2,7 +2,6 @@ package xyz.willz.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import xyz.willz.dao.AdminParkingDao;
+
 import xyz.willz.dao.LoginDao;
 
 
@@ -26,16 +25,17 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		LoginDao dao = new LoginDao();
-		boolean is_valid = dao.valid(username, password, buyer_seller);
-		System.out.println(is_valid);
-		if(is_valid) {
+		int id = dao.valid(username, password, buyer_seller);
+		System.out.println(id);
+		if(id != -1) {
 			HttpSession session = request.getSession();
 			
 			if(buyer_seller.equals("seller")) {	
 				System.out.println("A Seller");
-				session.removeAttribute("user");
 				session.setAttribute("admin", username);
+				session.setAttribute("id", id);
 				
+				session.removeAttribute("user");
 				response.sendRedirect("admin");
 				return;
 			} else {
@@ -50,6 +50,12 @@ public class Login extends HttpServlet {
 		
 		response.sendRedirect("login.jsp");
 		
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		resp.sendRedirect("login.jsp");
 	}
 
 }

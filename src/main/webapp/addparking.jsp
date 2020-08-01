@@ -10,10 +10,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="./resources/css/fontawesome/css/all.css">
 <body style="background-color: thistle;">
-	
-	<% 
-		AdminParking data = (AdminParking)session.getAttribute("dataToBeUpdated");
-	%>
+
 	<%@ include file="./navbar.jsp" %>
 	<main style="text-align: center; padding: 20px; margin: 5px; margin-top: 3rem; margin-bottom: 7rem">
 	
@@ -24,37 +21,34 @@
 		  <div class="form-row justify-content-center" style="text-align: center;">
 		    <div class="form-group col-md-6" style="max-width: 400px;">
 		      <label for="latitude">Latitude</label>
-		      <input name="latitude" value=<%= data.getLatitude() %> type="text" class="form-control" id="Latitude" required=true disabled>
+		      <input name="latitude" type="text" class="form-control" id="Latitude" required=true>
 		    </div>
 		    <div class="form-group col-md-6" style="max-width: 400px;">
 		      <label for="Longitude">Longitude</label>
-		      <input name="longitude" value=<%= data.getLongitude() %> type="text" class="form-control" id="Longitude" required=true disabled> 
+		      <input name="longitude" type="text" class="form-control" id="Longitude" required=true> 
 		    </div>
 		  </div>
 
 		<div class="form-row justify-content-center" >
 		    <div class="form-group col" style="max-width: 265px;">
 		      <label for="vacant">Vacant</label>
-		      <input name="vacant" value=<%= data.getVacant() %> type="text" class="form-control" id="vacant" value=<%= data.getVacant() %> required=true>
+		      <input name="vacant" type="text" class="form-control" id="vacant" required=true>
 		    </div>
 		    <div class="form-group col" style="max-width: 265px;">
 		      <label for="occupied">Occupied</label>
-		      <input name="occupied" value=<%= data.getOccupied() %> type="text" class="form-control" id="occupied" required=true>
+		      <input name="occupied" type="text" class="form-control" id="occupied" required=true>
 		    </div>
 		    <div class="form-group col" style="max-width: 265px;">
 		      <label for="total">Total</label>
-		      <input name="total" value=<%= data.getTotal() %> type="text" class="form-control" id="total" required=true >
+		      <input name="total" type="text" class="form-control" id="total" required=true >
 		    </div>
 		</div>
 		
 		<div class="form-group" style="text-align: center;">
 	    	<label for="parkingAddress">Address</label>
-	    	<input name="parkingName" value="<%= data.getParkingName() %>" type="text" class="form-control" id="parkingAddress" placeholder="Address" required="true" style="width: 80vw; max-width: 750px; margin-left: 30%; margin-right: 30%; margin: auto;">
+	    	<input name="parkingName" type="text" class="form-control" id="parkingAddress" placeholder="Address" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
 		</div>
 		
-		<div class="form-group" style="text-align: center;">
-	    	<input name="parkingId" value=<%= data.getId() %> hidden=true type="text" class="form-control" required=true style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
-		</div>
 		
 		<button type="submit" class="btn btn-danger" style="width: 150px;">Update</button>
 		

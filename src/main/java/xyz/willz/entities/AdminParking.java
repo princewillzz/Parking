@@ -1,5 +1,7 @@
 package xyz.willz.entities;
 
+import java.util.HashMap;
+
 public class AdminParking {
 	final private Integer id;
 	private String parkingName;
@@ -15,6 +17,16 @@ public class AdminParking {
 		this.total = totalParking;
 		this.vacant = vacantParking;
 		this.occupied = occupied;
+	}
+	public AdminParking(HashMap<String, Object> hmap) {
+		this.id = (int)hmap.get("id");
+		this.parkingName = (String)hmap.get("parkingName");
+		this.latitude = (String)hmap.get("latitude");
+		this.longitude = (String)hmap.get("longitude");
+		this.total = (int)hmap.get("total");
+		this.vacant = (int)hmap.get("vacant");
+		this.occupied = (int)hmap.get("occupied");
+	
 	}
 	
 	public Integer getId() {

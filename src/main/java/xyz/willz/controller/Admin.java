@@ -22,15 +22,22 @@ public class Admin extends HttpServlet {
 		System.out.println("In Admin");
 		HttpSession session = request.getSession();
 		
-		AdminParkingDao parkingDetails = new AdminParkingDao();
-		if(!parkingDetails.isEverythingOk()) {
+		try {
+			AdminParkingDao parkingDetails = new AdminParkingDao();
+			if(!parkingDetails.isEverythingOk()) {
+				RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+				rd.forward(request, response);
+				return;
+			}
+			int id = (int) session.getAttribute("id");
+			session.setAttribute("parkingDetails", parkingDetails.fetchData(id));
 			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 			rd.forward(request, response);
 			return;
+		} catch(Exception e) {
+			System.out.println("Exception in admin: " + e);
 		}
-		session.setAttribute("parkingDetails", parkingDetails.fetchData());
-		RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("login");
 		
 	}
 	@Override

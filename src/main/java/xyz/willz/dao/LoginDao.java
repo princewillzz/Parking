@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class LoginDao {
 	
 	private final String url;
@@ -32,9 +33,9 @@ public class LoginDao {
 		
 	}
 	
-	public boolean valid(String username, String password, String buyer_seller) {
+	public int valid(String username, String password, String buyer_seller) {
 		if(isEverythingOk == false) {
-			return false;
+			return -1;
 		}
 		
 		String sql = "select * from " + buyer_seller + " where username=? and password=?";
@@ -46,12 +47,13 @@ public class LoginDao {
 
 			ResultSet rs = st.executeQuery();
 			if(rs.next()) {
-				return true;
+				int id = (int)rs.getObject("id");
+				return id;
 			} 
 		} catch(Exception e) {
 			System.out.println("in exception " + e.getMessage());
 		}
 		
-		return false;
+		return -1;
 	}
 }
