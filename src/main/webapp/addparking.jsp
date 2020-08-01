@@ -14,9 +14,9 @@
 	<%@ include file="./navbar.jsp" %>
 	<main style="text-align: center; padding: 20px; margin: 5px; margin-top: 3rem; margin-bottom: 7rem">
 	
-	<h1>Update Info Of this Parking</h1>
+	<h1>Add New Parking</h1>
 	
-	<form action="updateparking" method="post" style="margin-top: 15vh;">
+	<form action="addparking" method="post" style="margin-top: 5rem;">
 		
 		  <div class="form-row justify-content-center" style="text-align: center;">
 		    <div class="form-group col-md-6" style="max-width: 400px;">
@@ -46,11 +46,11 @@
 		
 		<div class="form-group" style="text-align: center;">
 	    	<label for="parkingAddress">Address</label>
-	    	<input name="parkingName" type="text" class="form-control" id="parkingAddress" placeholder="Address" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
+	    	<input name="parkingName" type="text" class="form-control" id="parkingAddress" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
 		</div>
 		
 		
-		<button type="submit" class="btn btn-danger" style="width: 150px;">Update</button>
+		<button type="submit" class="btn btn-primary" style="width: 150px;">Add Parking</button>
 		
 	</form>
 	

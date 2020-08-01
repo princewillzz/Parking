@@ -34,6 +34,33 @@ public class AdminParkingDao {
 			this.isEverythingOk = false;
 		}
 	}
+	
+	public boolean add(final AdminParking newParking, final Integer adminId) {
+		if(!this.isEverythingOk) {
+			return false;
+		}
+		System.out.println("Going To add Item");
+		System.out.println(newParking + " " + adminId);
+		final String sql = "INSERT INTO parkings (parkingName, latitude, longitude, total, occupied, vacant, adminId) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement st = this.con.prepareStatement(sql);
+			st.setString(1, newParking.getParkingName());
+			st.setString(2, newParking.getLatitude());
+			st.setString(3, newParking.getLongitude());
+			st.setInt(4, newParking.getTotal());
+			st.setInt(5, newParking.getOccupied());
+			st.setInt(6, newParking.getVacant());
+			st.setInt(7, adminId);
+			
+			st.execute();
+			
+		}catch(Exception e) {
+			System.out.println("In Exception add Parking Dao: " + e);
+			return false;
+		}
+		return true;
+	}
+	
 	public List<AdminParking> fetchData(final Integer adminId) {
 		ArrayList<AdminParking> parkingDetails = new ArrayList<>();
 		if(this.isEverythingOk == false) {

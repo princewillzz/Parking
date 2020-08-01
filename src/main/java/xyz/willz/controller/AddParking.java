@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import xyz.willz.dao.AdminParkingDao;
+import xyz.willz.entities.AdminParking;
+
 @WebServlet("/addparking")
 public class AddParking extends HttpServlet{
 	@Override
@@ -21,7 +24,23 @@ public class AddParking extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		try {
+			if(request.getParameter("parkingName") == null || request.getParameter("latitude") == null || request.getParameter("longitude") == null) {
+				response.sendRedirect("addparking");
+				return;
+			}
+			final AdminParking newParking = new AdminParking(request);
+			
+			final Integer adminId = (Integer)request.getSession().getAttribute("id");
+			
+			final AdminParkingDao newParkingDao = new AdminParkingDao();
+			final boolean status = newParkingDao.add(newParking, adminId);
+			
+			
+			
+		} catch(Exception e) {
+			System.out.println("Exception in adding parking: " + e);
+		}
+		response.sendRedirect("admin");
 	}
 }

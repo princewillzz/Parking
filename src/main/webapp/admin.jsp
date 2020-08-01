@@ -23,8 +23,8 @@
 		ArrayList<AdminParking> allData = (ArrayList<AdminParking>)session.getAttribute("parkingDetails");
 	%>
 	<main style="padding-top: 50px; text-align: center;">
-	<h1>All Parking</h1>
-	<table class="table table-striped table-hover">
+	<h1 style="padding-top: 6px; padding-bottom: 20px;">All Parking</h1>
+	<table class="table table-striped table-hover py-3 my-3">
         <thead>
           <tr>
             <th scope="col">SI.</th>
@@ -48,7 +48,7 @@
             <td><%= allData.get(i).getVacant() %></td>
             <td><%= allData.get(i).getOccupied() %></td>
             <td><%= allData.get(i).getTotal() %></td>
-            <td><a href="updateparking?id=<%= i %>" style="color: white;"><button type="button" class="btn btn-success">Update</button></a></td>
+            <td><a href="updateparking?id=<%= i %>" style="color: white;"><button type="button" class="btn btn-success mx-3">Update</button></a></td>
           </tr>
           <% } %>
           
