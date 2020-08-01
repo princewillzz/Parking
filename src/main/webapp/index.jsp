@@ -55,14 +55,6 @@
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam reiciendis, at velit dolor explicabo sed quos voluptas, consectetur, deserunt libero dolorum quia soluta nemo consequatur! Nobis veritatis pariatur facere esse. <br>br <br> <br> <br>
 		
 	</main>
 

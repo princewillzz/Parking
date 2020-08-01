@@ -24,7 +24,6 @@ main{
 }
 .EnterLocation{
   width: 94%;
-  max-height: 2vh;
 }
 
 @media only screen and (max-width: 500px) {

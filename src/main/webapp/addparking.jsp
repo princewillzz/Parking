@@ -45,10 +45,25 @@
 		</div>
 		
 		<div class="form-group" style="text-align: center;">
-	    	<label for="parkingAddress">Address</label>
-	    	<input name="parkingName" type="text" class="form-control" id="parkingAddress" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
+	    	<label for="parkingName">Parking Name</label>
+	    	<input name="parkingName" type="text" class="form-control" id="parkingName" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
 		</div>
 		
+		<div class="form-group" style="text-align: center;">
+	    	<label for="parkingAddress">Address</label>
+	    	<input name="address" type="text" class="form-control" id="parkingAddress" required="true" style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
+		</div>
+		
+		<div class="form-row justify-content-center" style="text-align: center;">
+		    <div class="form-group col-md-6" style="max-width: 150px;">
+		      <label for="twoWheeler">Two Wheeler</label>
+		      <input name="two_wheeler" type="number" class="form-control" id="twoWheeler" required=true >
+		    </div>
+		    <div class="form-group col-md-6" style="max-width: 150px;">
+		      <label for="fourWheeler">Four Wheeler</label>
+		      <input name="four_wheeler" type="number" class="form-control" id="fourWheeler" required=true > 
+		    </div>
+	   </div>
 		
 		<button type="submit" class="btn btn-primary" style="width: 150px;">Add Parking</button>
 		

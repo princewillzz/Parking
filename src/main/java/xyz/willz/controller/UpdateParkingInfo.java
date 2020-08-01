@@ -53,10 +53,12 @@ public class UpdateParkingInfo extends HttpServlet{
 			final Integer vacant = Integer.valueOf(request.getParameter("vacant"));
 			final Integer occupied = Integer.valueOf(request.getParameter("occupied"));
 			final Integer total = Integer.valueOf(request.getParameter("total"));
+			final Integer two_wheeler = Integer.parseInt(request.getParameter("two_wheeler"));
+			final Integer four_wheeler = Integer.parseInt(request.getParameter("four_wheeler"));
 			
 			AdminParkingDao adminParkingDao = new AdminParkingDao();
 			
-			adminParkingDao.update(parkingId, parkingName, vacant, occupied, total);
+			adminParkingDao.update(parkingId, parkingName, vacant, occupied, total, two_wheeler, four_wheeler);
 
 			System.out.println("All Updated");
 		} catch(Exception e) {

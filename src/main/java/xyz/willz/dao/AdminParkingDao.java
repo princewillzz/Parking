@@ -41,16 +41,19 @@ public class AdminParkingDao {
 		}
 		System.out.println("Going To add Item");
 		System.out.println(newParking + " " + adminId);
-		final String sql = "INSERT INTO parkings (parkingName, latitude, longitude, total, occupied, vacant, adminId) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		final String sql = "INSERT INTO parkings (parkingName, address, latitude, longitude, total, occupied, vacant, adminId, two_wheeler, four_wheeler) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement st = this.con.prepareStatement(sql);
 			st.setString(1, newParking.getParkingName());
-			st.setString(2, newParking.getLatitude());
-			st.setString(3, newParking.getLongitude());
-			st.setInt(4, newParking.getTotal());
-			st.setInt(5, newParking.getOccupied());
-			st.setInt(6, newParking.getVacant());
-			st.setInt(7, adminId);
+			st.setString(2, newParking.getAddress());
+			st.setString(3, newParking.getLatitude());
+			st.setString(4, newParking.getLongitude());
+			st.setInt(5, newParking.getTotal());
+			st.setInt(6, newParking.getOccupied());
+			st.setInt(7, newParking.getVacant());
+			st.setInt(8, adminId);
+			st.setInt(9, newParking.getTwo_wheeler());
+			st.setInt(10, newParking.getFour_wheeler());
 			
 			st.execute();
 			
@@ -83,12 +86,14 @@ public class AdminParkingDao {
 				
 				hmap.put("id", resultSet.getObject("id"));
 				hmap.put("parkingName", resultSet.getObject("parkingName"));
+				hmap.put("address", resultSet.getObject("address"));
 				hmap.put("latitude", resultSet.getObject("latitude"));
 				hmap.put("longitude", resultSet.getObject("longitude"));
 				hmap.put("total", resultSet.getObject("total"));
 				hmap.put("vacant", resultSet.getObject("vacant"));
 				hmap.put("occupied", resultSet.getObject("occupied"));
-				
+				hmap.put("two_wheeler", resultSet.getObject("two_wheeler"));
+				hmap.put("four_wheeler", resultSet.getObject("four_wheeler"));
 				
 				AdminParking adminParkingObj = new AdminParking(hmap);
 				parkingDetails.add(adminParkingObj);
@@ -106,7 +111,7 @@ public class AdminParkingDao {
 	}
 	
 	
-	public boolean update(final Integer parkingId, final String parkingName, final Integer vacant, final Integer occupied, final Integer total) {
+	public boolean update(final Integer parkingId, final String parkingName, final Integer vacant, final Integer occupied, final Integer total, final Integer two_wheeler, final Integer four_wheeler) {
 		if(!this.isEverythingOk()) {
 			return false;
 		}
@@ -114,13 +119,16 @@ public class AdminParkingDao {
 		try {
 			// update the data in the database
 			System.out.println("Starting Updating");
-			final String updateQuery = "UPDATE parkings SET parkingName = ?, total = ?, occupied = ?, vacant = ? where id = ?";
+			final String updateQuery = "UPDATE parkings SET parkingName = ?, total = ?, occupied = ?, vacant = ?, two_wheeler = ?, four_wheeler = ? where id = ?";
 			final PreparedStatement statement = this.con.prepareStatement(updateQuery);
 			statement.setString(1, parkingName);
 			statement.setInt(2, total);
 			statement.setInt(3, occupied);
 			statement.setInt(4, vacant);
-			statement.setInt(5, parkingId);
+			statement.setInt(5, two_wheeler);
+			statement.setInt(6, four_wheeler);
+			
+			statement.setInt(7, parkingId);
 			
 			statement.execute();			
 			System.out.println("finished update");

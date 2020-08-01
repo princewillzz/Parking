@@ -25,15 +25,19 @@
 	<main style="padding-top: 50px; text-align: center;">
 	<h1 style="padding-top: 6px; padding-bottom: 20px;">All Parking</h1>
 	<table class="table table-striped table-hover py-3 my-3">
+		<caption>List of Parking</caption>
         <thead>
           <tr>
             <th scope="col">SI.</th>
             <th scope="col">Parking Name</th>
+            <th scope="col">Address</th>
             <th scope="col">Latitude</th>
             <th scope="col">Longitude</th>
             <th scope="col">Vacant</th>
             <th scope="col">Occupied</th>
             <th scope="col">Total</th>
+            <th scope="col">Two Wheeler</th>
+            <th scope="col">Four Wheeler</th>
             <th scope="col">Update</th>
           </tr>
         </thead>
@@ -43,11 +47,14 @@
           <tr>
             <th scope="row"><%= i+1 %></th>
             <td><%= allData.get(i).getParkingName() %></td>
+            <td><%= allData.get(i).getAddress() %></td>
             <td><%= allData.get(i).getLatitude() %></td>
             <td><%= allData.get(i).getLongitude() %></td>
             <td><%= allData.get(i).getVacant() %></td>
             <td><%= allData.get(i).getOccupied() %></td>
             <td><%= allData.get(i).getTotal() %></td>
+            <td><%= allData.get(i).getTwo_wheeler() %></td>
+            <td><%= allData.get(i).getFour_wheeler() %></td>
             <td><a href="updateparking?id=<%= i %>" style="color: white;"><button type="button" class="btn btn-success mx-3">Update</button></a></td>
           </tr>
           <% } %>
@@ -55,6 +62,9 @@
         </tbody>
         
       </table>
+       <%if(allData.size() == 0){%>
+        	<h3>You Have no Registered Parking Zone</h3>
+        <% } %>
       <% } else { %>
       		<h1>No Details Found</h1>
       <% } %>

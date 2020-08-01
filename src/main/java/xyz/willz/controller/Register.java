@@ -14,7 +14,7 @@ import xyz.willz.dao.RegisterDao;
 import xyz.willz.entities.RegistrationDetails;
 
 
-@WebServlet("/resgister")
+@WebServlet("/register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    

@@ -48,13 +48,29 @@
 		</div>
 		
 		<div class="form-group" style="text-align: center;">
-	    	<label for="parkingAddress">Address</label>
-	    	<input name="parkingName" value="<%= data.getParkingName() %>" type="text" class="form-control" id="parkingAddress" placeholder="Address" required="true" style="width: 80vw; max-width: 750px; margin-left: 30%; margin-right: 30%; margin: auto;">
+	    	<label for="parkingName">Parking Name</label>
+	    	<input name="parkingName" value="<%= data.getParkingName() %>" type="text" class="form-control" id="parkingName" placeholder="Parking Name" required="true" style="width: 80vw; max-width: 750px; margin-left: 30%; margin-right: 30%; margin: auto;">
 		</div>
 		
 		<div class="form-group" style="text-align: center;">
-	    	<input name="parkingId" value=<%= data.getId() %> hidden=true type="text" class="form-control" required=true style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;">
+	    	<label for="parkingAddress">Address</label>
+	    	<input name="address" value="<%= data.getAddress() %>" type="text" class="form-control" id="parkingAddress" placeholder="Address" required="true" style="width: 80vw; max-width: 750px; margin-left: 30%; margin-right: 30%; margin: auto;" disabled>
 		</div>
+		
+		<div class="form-group" style="text-align: center;">
+	    	<input name="parkingId" value=<%= data.getId() %> hidden=true type="text" class="form-control" required=true style="max-width: 750px;width:80vw; margin-left: 30%; margin-right: 30%; margin: auto;" >
+		</div>
+		
+		<div class="form-row justify-content-center" style="text-align: center;">
+		    <div class="form-group col-md-6" style="max-width: 150px;">
+		      <label for="twoWheeler">Two Wheeler</label>
+		      <input name="two_wheeler" value=<%= data.getTwo_wheeler() %> type="number" class="form-control" id="twoWheeler" required=true >
+		    </div>
+		    <div class="form-group col-md-6" style="max-width: 150px;">
+		      <label for="fourWheeler">Four Wheeler</label>
+		      <input name="four_wheeler" value=<%= data.getFour_wheeler() %> type="number" class="form-control" id="fourWheeler" required=true > 
+		    </div>
+	   </div>
 		
 		<button type="submit" class="btn btn-danger" style="width: 150px;">Update</button>
 		
