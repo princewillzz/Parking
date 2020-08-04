@@ -14,52 +14,17 @@
 	<%@ include file="./navbar.jsp" %>
 
 	<%
-		BookingInfo bookingInfo = (BookingInfo)session.getAttribute("bookingInfo");
+		BookingInfo bookingInfo = (BookingInfo)session.getAttribute("bookinginfo");
 	%>
 	<div class="heading">
-	  <% if(bookingInfo.isAvailable()) { %>
-	  <h1>Confirm Details</h1>
-	  <% } else { %>
-	  <h1>Parking Full</h1>
-	  <% } %>
+	  <h1>Booking Success</h1>
 	</div>
 	<main>
 	<!-- The Booking Form Container -->
-	  <form action="<% if(bookingInfo.isAvailable()){ %>https://google.com<% } else{ %>https://github.com<% } %>" class="confirmationForm">
+	  <% out.println(bookingInfo);
+	  	System.out.println("Inside COnfirmation "+bookingInfo);
+	  %>
 	  
-	  	<div class="form-group ParkingNameContainer" id="ParkingNameContainer">
-	      <input name="parkingName" value="<%= bookingInfo.getParkingName() %>" type="text" id="ParkingName" class="form-control my-3 py-3 mx-auto" readonly/>
-		</div>
-		<% if(!bookingInfo.isAvailable()){ %>
-		<label class="w-100 mx-auto" for="heading"><i class="fas fa-hand-point-down text-danger" style="transform: rotate(20deg);"></i>(Change Location or details)<i class="fas fa-hand-point-down text-danger" style="transform: rotate(-20deg);"></i></label>
-		<% } %>
-	    <div class="row px-3 py-3">
-		    <div class="col">
-		      <label for="Arrival mx-auto">Arrival</label>
-		      <select name="arrivalDate" class="form-control" id="ArrivalDate">
-		      	<option value="<%= bookingInfo.getArrivalDate() %>"><% out.print(bookingInfo.getArrivalDate()); %></option>		      
-		      </select>
-		      <select name="arrivalTime" class="form-control " id="ArrivalTime">
-		      	<option value="<%= bookingInfo.getArrivalTime() %>"><% out.print(bookingInfo.getArrivalTime()); %></option>
-		      </select>
-		    </div>
-		    <div class="col">
-		      <label for="Departure">Departure</label>
-		      <select name="departureDate" class="form-control" id="DepartureDate">
-		      	<option value="<%= bookingInfo.getDepartureTime() %>"><% out.print(bookingInfo.getDepartureDate()); %></option>
-		      </select>
-		      <select name="departureTime" class="form-control" id="DepartureTime">
-		      	<option value="<%= bookingInfo.getDepartureTime() %>"><% out.print(bookingInfo.getDepartureTime()); %></option>
-		      </select>
-		    </div>	
-		</div>
-		  <% if(bookingInfo.isAvailable()) { %> 
-			<button type="submit" class="btn btn-primary w-75">Confirm Booking</button>
-			<% } else { %>
-			<button type="submit" class="btn btn-danger w-75 disabled">Find Parking</button>
-			<% } %>
-	
-	  </form>
 	<!-- End Of Booking Form -->
 	</main>	
 	

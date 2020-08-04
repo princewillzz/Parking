@@ -30,11 +30,10 @@ public class ParkingsDao {
 			
 			PreparedStatement st = this.con.prepareStatement(sql);
 			st.setString(1, "%" +address + "%");
-			System.out.println(st);
+			
 			final ResultSet resultSet = st.executeQuery();
 			System.out.println("fetched Parkings");
 			while(resultSet.next()) {
-				System.out.print("item: ");
 				HashMap<String, Object> hmap = new HashMap<>();
 				
 				hmap.put("id", resultSet.getObject("id"));

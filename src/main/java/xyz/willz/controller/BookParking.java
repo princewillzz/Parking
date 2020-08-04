@@ -1,6 +1,7 @@
 package xyz.willz.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,51 +12,63 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import xyz.willz.dao.BookingDao;
+import xyz.willz.entities.AdminParking;
 import xyz.willz.entities.BookingInfo;
 
 @WebServlet("/bookparking")
 public class BookParking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final HttpSession session = request.getSession();
+		try {
+			final Integer id = Integer.parseInt(request.getParameter("id"));
+			final AdminParking selectedParking = ((ArrayList<AdminParking>)session.getAttribute("parkings")).get(id);
+			
+			session.setAttribute("selectedParking", selectedParking);
+			final RequestDispatcher rd = request.getRequestDispatcher("booking.jsp");
+			rd.forward(request, response);
+			return;
+			
+		} catch(Exception e) {
+			System.out.println("Exception: " + e);
+		}
+		response.sendRedirect("home.jsp");
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		try{
-			String arrivalDate = request.getParameter("arrivalDate");
-			String departureDate = request.getParameter("departureDate");
-			String arrivalTime = request.getParameter("arrivalTime");
-			String departureTime = request.getParameter("departureTime");
-			String coordinates[] = request.getParameter("coordinates").split(",");
-			final String parkingName = request.getParameter("parkingName");
-			final String coordX = coordinates[0];
-			final String coordY = coordinates[1];
-			
-			final BookingInfo bookingInfo = new BookingInfo(coordX, coordY, parkingName);
-			bookingInfo.setArrivalDate(arrivalDate);
-			bookingInfo.setArrivalTime(arrivalTime);
-			bookingInfo.setDepartureTime(departureTime);
-			bookingInfo.setDepartureDate(departureDate);
-			
-			if(!bookingInfo.isValid()) {
-				System.out.println("Validation Failed");
-				response.sendRedirect("index.jsp");
-				return;
+			System.out.println("Post in book Parking");
+			final BookingInfo bookingInfo = new BookingInfo(request, (AdminParking) request.getSession().getAttribute("selectedParking"));
+			// Check Validity
+			if(bookingInfo.valid()) {
+				System.out.println("Booking Information is valid");
+				// check availability
+				final BookingDao bookingDao = new BookingDao();
+				boolean available = bookingDao.validate(bookingInfo);
+				if(available) {
+					boolean success = bookingDao.makeBooking(bookingInfo);
+					if(!success) {
+						System.out.println("Unsuccessful save");
+						response.sendRedirect("home.jsp");
+						return;
+					}
+					
+					final HttpSession session = request.getSession();
+					session.setAttribute("bookinginfo", bookingInfo);
+					System.out.println(bookingInfo);
+					RequestDispatcher rd = request.getRequestDispatcher("confirmation.jsp");
+					rd.forward(request, response);
+					return;
+				}
 			}
 			
-			BookingDao bookingDao = new BookingDao(bookingInfo);
-			bookingDao.validate();
-			System.out.println(bookingInfo.isAvailable());
-			System.out.println(bookingInfo.getAvailability());
-			HttpSession session = request.getSession();
-			session.setAttribute("bookingInfo", bookingInfo);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("confirmation.jsp");
-			rd.forward(request, response);
 		}catch(Exception e) {
-			System.out.println("Exception ");
-			response.sendRedirect("index.jsp");
+			System.out.println("Exception in booking");
 		}
-		
+		response.sendRedirect("home.jsp");
 	}
 
 }

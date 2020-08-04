@@ -30,11 +30,11 @@ public class Login extends HttpServlet {
 		if(id != -1) {
 			HttpSession session = request.getSession();
 			
+			session.setAttribute("id", id);
+			
 			if(buyer_seller.equals("seller")) {	
 				System.out.println("A Seller");
 				session.setAttribute("admin", username);
-				session.setAttribute("id", id);
-				
 				session.removeAttribute("user");
 				response.sendRedirect("admin");
 				return;

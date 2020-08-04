@@ -1,4 +1,4 @@
-<footer class="footer mt-auto py-3 bg-dark" style="min-height: 50vh">
+<footer class="footer mt-auto py-3 bg-dark" style="min-height: 50vh; bottom: 0%;">
   <div class="container py-3" style="text-align: center;">
     <span class="text-muted">Know About Us</span>
     <div style="padding: 2px;">

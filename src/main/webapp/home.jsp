@@ -17,7 +17,7 @@
 		
 		<h1>Find Parking</h1>
 		
-			<!-- The Booking Form Container -->
+			<!-- The SearchParking Form Container -->
 		<form action="findparkings" method="get" class="BookingForm py-3 my-3">
 		    
 		    <div class="form-group EnterLocationContainer" id="EnterLocationContainer">
@@ -27,7 +27,7 @@
 		  <button type="submit" class="btn btn-info w-75">Find Parking</button>
 		
 		</form>
-		<!-- End Of Booking Form -->
+		<!-- End Of SearchParking Form -->
 		
 		<% if(session.getAttribute("parkings") != null){ 
 			final List<AdminParking> parkings = (ArrayList<AdminParking>)session.getAttribute("parkings");
@@ -41,21 +41,20 @@
             <th scope="col">SI.</th>
             <th scope="col">Parking Name</th>
             <th scope="col">Address</th>
-            <th scope="col">Vacant</th>
             <th scope="col">Two Wheeler</th>
             <th scope="col">Four Wheeler</th>
           </tr>
         </thead>
         <tbody>
-        <% for(AdminParking items: parkings) {%>
+        <% int index = 0;
+        for(AdminParking items: parkings) {%>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><%= index+1 %></th>
             <td><%= items.getParkingName() %></td>
             <td><%= items.getAddress() %></td>
-            <td><%= items.getVacant() %></td>
             <td><%= items.getTwo_wheeler() %></td>
             <td><%= items.getFour_wheeler() %></td>
-            <td><a href="/" style="color: white;"><button type="button" class="btn btn-success mx-3">Book</button></a></td>
+            <td><a href="bookparking?id=<%= index++ %>" style="color: white;"><button type="button" class="btn btn-success mx-3">Book</button></a></td>
           </tr>
         <% } %>
         </tbody>
