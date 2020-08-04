@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="xyz.willz.entities.AdminParking"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,30 +18,52 @@
 		<h1>Find Parking</h1>
 		
 			<!-- The Booking Form Container -->
-		<form action="bookparking" method="post" class="BookingForm py-3 my-3">
+		<form action="findparkings" method="get" class="BookingForm py-3 my-3">
 		    
 		    <div class="form-group EnterLocationContainer" id="EnterLocationContainer">
-		      <input name="parkingName" type="text" id="EnterLocation" class="EnterLocation form-control my-3 py-3 mx-auto" placeholder="Enter Location" /> 
+		      <input name="address" type="text" id="EnterLocation" class="EnterLocation form-control my-3 py-3 mx-auto" placeholder="Enter Location" /> 
 		    </div>
-		    
-		  <!-- <div class="row px-3 py-3">
-		    <div class="col">
-		      <label for="Arrival mx-auto">Arrival</label>
-		      <select name="arrivalDate" class="form-control" id="ArrivalDate"></select>
-		      <select name="arrivalTime" class="form-control " id="ArrivalTime"></select>
-		    </div>
-		    <div class="col">
-		      <label for="Departure">Departure</label>
-		      <select name="departureDate" class="form-control" id="DepartureDate"></select>
-		      <select name="departureTime" class="form-control" id="DepartureTime"></select>
-		    </div>
-		  </div> -->
 		  
 		  <button type="submit" class="btn btn-info w-75">Find Parking</button>
 		
 		</form>
 		<!-- End Of Booking Form -->
 		
+		<% if(session.getAttribute("parkings") != null){ 
+			final List<AdminParking> parkings = (ArrayList<AdminParking>)session.getAttribute("parkings");
+			if(parkings.size() > 0) {%>	
+		<!-- Display all Parking's Details -->
+		
+		<table class="table table-striped table-hover py-3 my-3">
+		<caption>List of Parking</caption>
+        <thead>
+          <tr>
+            <th scope="col">SI.</th>
+            <th scope="col">Parking Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Vacant</th>
+            <th scope="col">Two Wheeler</th>
+            <th scope="col">Four Wheeler</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(AdminParking items: parkings) {%>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= items.getParkingName() %></td>
+            <td><%= items.getAddress() %></td>
+            <td><%= items.getVacant() %></td>
+            <td><%= items.getTwo_wheeler() %></td>
+            <td><%= items.getFour_wheeler() %></td>
+            <td><a href="/" style="color: white;"><button type="button" class="btn btn-success mx-3">Book</button></a></td>
+          </tr>
+        <% } %>
+        </tbody>
+        
+      </table>
+		<% } %>
+		<!-- Finished Displaying all Parking's Details -->
+	<% } %>
 	
 	</main>
 	
