@@ -38,7 +38,7 @@ public class FindParking extends HttpServlet {
 		} catch(Exception e) {
 			System.out.println("Exception: "+e);
 		}
-		resp.sendRedirect("home.jsp");
+		resp.sendRedirect("index.jsp");
 	}
 	
 }

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./resources/css/booking.css">
 </head>
 <body>
-
+	<%@ include file="./navbar.jsp" %>
 	<main>
 	
 	  <div class="heading">
@@ -94,7 +94,8 @@
 	<!-- End Of Booking Form -->
 	
 	</main>
-
+	
+	<%@ include file="./footer.jsp" %>
 	
 		<!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

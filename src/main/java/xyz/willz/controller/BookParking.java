@@ -34,7 +34,7 @@ public class BookParking extends HttpServlet {
 		} catch(Exception e) {
 			System.out.println("Exception: " + e);
 		}
-		response.sendRedirect("home.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,7 +52,7 @@ public class BookParking extends HttpServlet {
 					boolean success = bookingDao.makeBooking(bookingInfo);
 					if(!success) {
 						System.out.println("Unsuccessful save");
-						response.sendRedirect("home.jsp");
+						response.sendRedirect("index.jsp");
 						return;
 					}
 					
@@ -68,7 +68,7 @@ public class BookParking extends HttpServlet {
 		}catch(Exception e) {
 			System.out.println("Exception in booking");
 		}
-		response.sendRedirect("home.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 }
