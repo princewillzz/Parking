@@ -23,10 +23,10 @@ public class BookingInfo {
 		try {
 			this.buyerId = (Integer)request.getSession().getAttribute("id");
 			this.parkingId = selectedParking.getId();
-			this.arrivalDate = request.getParameter("arrivalDate");
-			this.departureDate = request.getParameter("departureDate");
-			this.arrivalTime = request.getParameter("arrivalTime");
-			this.departureTime = request.getParameter("departureTime");
+			this.setArrivalDate(request.getParameter("arrivalDate"));
+			this.setDepartureDate(request.getParameter("departureDate"));
+			this.setArrivalTime(request.getParameter("arrivalTime"));
+			this.setDepartureTime(request.getParameter("departureTime"));
 			this.vehicleType = request.getParameter("vehicleType");
 			
 		} catch(Exception e) {

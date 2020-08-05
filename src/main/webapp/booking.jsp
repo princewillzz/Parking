@@ -42,17 +42,19 @@
 		      <select name="arrivalDate" class="form-control" id="ArrivalDate">
 		      	<% 
 		      		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd, EEE");
+		    		SimpleDateFormat sdfvalue = new SimpleDateFormat("yyyy:MM:dd");
 		      		Calendar calendar = Calendar.getInstance();
 		    		for(int i = 0; i < 7; i++) {
-		    			%> <option value="<%= sdf.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%
+		    			%> <option value="<%= sdfvalue.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%
 		    			calendar.add(Calendar.DATE, 1);
 		    		}
 		    	%>	      
 		      </select>
 		      <select name="arrivalTime" class="form-control " id="ArrivalTime">
 		      	<% 
-		      		sdf = new SimpleDateFormat("HH:00");
+		      		sdf = new SimpleDateFormat("HH:mm");
 		      		calendar = Calendar.getInstance();
+		      		calendar.add(Calendar.HOUR, 2);
 		    		for(int i = 0; i < 24; i++) {
 		    			%> <option value="<%= sdf.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%
 		    			calendar.add(Calendar.HOUR, 1);
@@ -67,15 +69,16 @@
 		      		sdf = new SimpleDateFormat("yyyy MMM dd, EEE");
 		      		calendar = Calendar.getInstance();
 		    		for(int i = 0; i < 7; i++) {
-		    			%> <option value="<%= sdf.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%
+		    			%> <option value="<%= sdfvalue.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%
 		    			calendar.add(Calendar.DATE, 1);
 		    		}
 		    	%>
 		      </select>
 		      <select name="departureTime" class="form-control" id="DepartureTime">
 		      	<% 
-		      		sdf = new SimpleDateFormat("HH:00");
+		      		sdf = new SimpleDateFormat("HH:mm");
 		      		calendar = Calendar.getInstance();
+		      		calendar.add(Calendar.HOUR, 2);
 		    		for(int i = 0; i < 24; i++) {
 		    			calendar.add(Calendar.HOUR, 1);
 		    			%> <option value="<%= sdf.format(calendar.getTime()) %>"><%= sdf.format(calendar.getTime()) %></option> <%

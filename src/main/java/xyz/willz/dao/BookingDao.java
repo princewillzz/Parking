@@ -41,7 +41,7 @@ public class BookingDao {
 		
 		final String sql = "INSERT INTO bookings(parking_id, buyer_id, vehicle_type, arrival_time, departure_time, arrival_date, departure_date) values (?, ?, ?, ?, ?, ?, ?)";
 		try {
-			final PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			final PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, bookingInfo.getParkingId());
 			st.setInt(2, bookingInfo.getBuyerId());
 			st.setString(3, bookingInfo.getVehicleType());
@@ -54,20 +54,7 @@ public class BookingDao {
 			
 			this.incrementParking(bookingInfo.getParkingId());
 			bookingInfo.setVacant(bookingInfo.getVacant()-1);
-			return true;
-//			int rowAffected = st.executeUpdate();
-//			if(rowAffected == 1) {
-//				int candidateId = 0;
-//				ResultSet rs = st.getGeneratedKeys();
-//				if(rs.next())
-//				   candidateId = rs.getInt(1);
-//				
-//				System.out.println(candidateId);
-//				this.incrementParking(candidateId);
-//				return true;
-//			}
-			
-			//this.incrementParking(); 
+			return true; 
 		}catch(Exception e) {
 			System.out.println("Exception while saving: " + e);
 		}

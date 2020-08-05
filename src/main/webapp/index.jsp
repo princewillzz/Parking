@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="./resources/css/index.css">
 </head>
 <body>
+	<%
+		if(session.getAttribute("admin") != null) {
+			response.sendRedirect("admin");
+			return;
+		}
+	%>
 
 	<%@ include file="./navbar.jsp" %>
 	

@@ -102,7 +102,7 @@ public class AdminParkingDao {
 			}
 			
 		} catch(Exception e) {
-			System.out.println("Exception in Dao layer");
+			System.out.println("Exception in Dao layer: " + e);
 		}
 		
 		//parkingDetails.add(new AdminParking(1, "harsh", "12121", "21212", 100, 20, 80));
