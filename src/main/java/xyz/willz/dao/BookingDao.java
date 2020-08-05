@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.cj.protocol.Resultset;
 
@@ -100,5 +101,75 @@ public class BookingDao {
 		return false;
 	}
 	
+	
+	private final String CHECK = "select id, parking_Id from bookings where departure_time < time(now()) && departure_date <= date(now())";
+	private final String UPDATEVACANT = "UPDATE parkings SET vacant = vacant+1, occupied = occupied-1 where id = ?";
+	private final String CLEAR = "DELETE FROM bookings WHERE id = ?";
+	public void checkAndClear() {
+		
+		if(this.isEverythingOk == false) {
+			return;
+		}
+		this.check();
+		
+	}
+	
+	private void check() {
+		try {
+			final PreparedStatement statement = this.con.prepareStatement(CHECK);
+			ResultSet results = statement.executeQuery();
+			
+			if(!results.next()) {
+				return ;
+			} 
+		
+			final ArrayList<Integer> allParkingsId = new ArrayList<>();
+			final ArrayList<Integer> allBookingsId = new ArrayList<>();
+			do { 
+				allBookingsId.add(results.getInt("id"));
+				allParkingsId.add(results.getInt("parking_id"));
+			} while(results.next());
+			
+			System.out.println("All parking Ids' are: " + allParkingsId);
+			this.updateVacantParkings(allParkingsId);
+			
+			System.out.println("All booking Ids' are: " + allBookingsId);
+			this.clear(allBookingsId);
+		}catch(Exception e) {
+			System.out.println("Exception: " + e);
+		}
+		
+	}
+	
+	private void updateVacantParkings(ArrayList<Integer> allParkingsId) {
+		
+		try {
+			for(int id: allParkingsId) {
+				final PreparedStatement statement = this.con.prepareStatement(UPDATEVACANT);
+				statement.setInt(1, id);
+				System.out.println("statement: " + statement);
+				statement.execute();
+			}
+			
+		} catch(Exception e) {
+			System.out.println("Exception: " + e);
+		}
+		
+	}
+	
+	private void clear(ArrayList<Integer> allBookingsId) {
+		try {
+			
+			for(int id: allBookingsId) {
+				final PreparedStatement statement = this.con.prepareStatement(CLEAR);
+				statement.setInt(1, id);
+				System.out.println("statement: " + statement);
+				statement.execute();
+			}
+			
+		} catch(Exception e) {
+			System.out.println("Exception: " + e);
+		}
+	}
 	
 }
