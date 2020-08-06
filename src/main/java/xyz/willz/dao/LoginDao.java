@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import xyz.willz.security.Password;
+
 
 public class LoginDao {
 	
@@ -43,8 +45,12 @@ public class LoginDao {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, username);
-			st.setString(2, password);
-
+			
+			final Password passwordObj = new Password();
+			final String hashedPassword = passwordObj.getSecurePassword(password);
+			
+			st.setString(2, hashedPassword);
+			
 			ResultSet rs = st.executeQuery();
 			if(rs.next()) {
 				int id = (int)rs.getObject("id");

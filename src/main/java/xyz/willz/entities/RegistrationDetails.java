@@ -1,5 +1,7 @@
 package xyz.willz.entities;
 
+import xyz.willz.security.Password;
+
 public class RegistrationDetails {
 	
 	private String username;
@@ -33,7 +35,8 @@ public class RegistrationDetails {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		final Password passwordObj = new Password();
+		this.password = passwordObj.getSecurePassword(password);
 	}
 	public String getEmail() {
 		return email;

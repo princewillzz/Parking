@@ -40,8 +40,6 @@ public class Config implements ServletContextListener {
 		}, 1000 * 60, 1000 * 60 // the second argument for repetition (1000 = 1s)
 		);
 		
-		
-		
 	}
 
 }

@@ -20,7 +20,11 @@ public class FindParking extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		final HttpSession session = req.getSession();
-		
+		final String address = req.getParameter("address").trim();
+		if(address == null || address.isBlank()) {
+			resp.sendRedirect("index.jsp");
+			return;
+		}
 		try {
 			session.removeAttribute("parkings");
 		} catch(Exception e) {
@@ -28,13 +32,13 @@ public class FindParking extends HttpServlet {
 		}
 		
 		try {System.out.println("Finding Parkings");
-			
-			final String address = req.getParameter("address");
+		
 			ParkingsDao parkingsDao = new ParkingsDao();
 			List<AdminParking> parkings = parkingsDao.findParkings(address);
 
 			session.setAttribute("parkings", parkings);
 			System.out.println("sending You Parkings");
+		
 		} catch(Exception e) {
 			System.out.println("Exception: "+e);
 		}
