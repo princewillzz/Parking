@@ -1,7 +1,8 @@
 package xyz.willz.controller;
 
 import java.io.IOException;
-
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,24 +27,36 @@ public class Register extends HttpServlet {
 		final String phone_number = request.getParameter("phone_number");
 		final String buyerOrSeller = request.getParameter("buyer_seller");
 		
-		RegistrationDetails registerDetails = new RegistrationDetails(username, password, email, phone_number);
-				
-		final RegisterDao registerDao = new RegisterDao();
-		
-		if(!registerDetails.is_valid() || !registerDao.is_valid(registerDetails, buyerOrSeller)) {
-			response.sendRedirect("login.jsp");
+		RegistrationDetails registerDetails;
+		try {
+			registerDetails = new RegistrationDetails(username, password, email, phone_number);
+			final RegisterDao registerDao = new RegisterDao();
+			
+			if(!registerDetails.is_valid() || !registerDao.is_valid(registerDetails, buyerOrSeller)) {
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			final boolean is_saved = registerDao.save(registerDetails, buyerOrSeller);
+			if(is_saved == false) {
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("user", username);
+			response.sendRedirect("hello");
 			return;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		final boolean is_saved = registerDao.save(registerDetails, buyerOrSeller);
-		if(is_saved == false) {
-			response.sendRedirect("login.jsp");
-			return;
-		}
+		response.sendRedirect("login");
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("user", username);
-		response.sendRedirect("hello");
 		
 	}
 

@@ -1,5 +1,8 @@
 package xyz.willz.entities;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import xyz.willz.security.Password;
 
 public class RegistrationDetails {
@@ -9,7 +12,7 @@ public class RegistrationDetails {
 	private String email;
 	private String phone_number;
 	
-	public RegistrationDetails(String username, String password, String email, String phone_number) {
+	public RegistrationDetails(String username, String password, String email, String phone_number) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		setUsername(username);
 		setPassword(password);
 		setEmail(email);
@@ -34,7 +37,7 @@ public class RegistrationDetails {
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public void setPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		final Password passwordObj = new Password();
 		this.password = passwordObj.getSecurePassword(password);
 	}
