@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import xyz.willz.dao.ParkingsDao;
 import xyz.willz.entities.AdminParking;
+import xyz.willz.features.Mail;
 
 @WebServlet("/findparkings")
 public class FindParking extends HttpServlet {
@@ -21,6 +22,11 @@ public class FindParking extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		final HttpSession session = req.getSession();
 		final String address = req.getParameter("address").trim();
+		
+//		System.out.println("About to send mail");
+//		final Mail mail = new Mail();
+//		mail.sendMail();
+		
 		if(address == null || address.isBlank()) {
 			resp.sendRedirect("index.jsp");
 			return;

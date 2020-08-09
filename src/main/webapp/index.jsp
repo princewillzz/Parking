@@ -27,7 +27,22 @@
 		
 			<!-- The SearchParking Form Container -->
 		<form action="findparkings" method="get" class="BookingForm py-3 my-3">
-		    
+		    <!-- Warning Message Container -->
+			<% 
+				try{
+					String message = (String) session.getAttribute("message");
+					System.out.println(message);
+					if(message != null && !message.isBlank()) { %>
+						<div class="alert alert-danger" role="alert">
+						  <%= message %>
+						</div>
+					<%}
+					session.removeAttribute("message");
+				} catch(Exception e) {}
+			 %>
+			
+			<!-- End of Warning Container -->
+			
 		    <div class="form-group EnterLocationContainer" id="EnterLocationContainer">
 		      <input name="address" type="text" id="EnterLocation" class="EnterLocation form-control my-3 py-3 mx-auto" placeholder="Enter Location" /> 
 		    </div>

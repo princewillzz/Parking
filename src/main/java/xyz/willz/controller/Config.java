@@ -11,13 +11,12 @@ import xyz.willz.dao.BookingDao;
 public class Config implements ServletContextListener {
 	
 	 public void contextInitialized(ServletContextEvent event) {
-	        // Webapp startup.
+		 // WebApp Startup
 		 System.out.println("Server Started");
 		 //this.setTimerForDb();
-		 
 		 System.out.println("Hii nishi the server is started");
 		 
-		System.out.println("Continue rest of the work");
+		 System.out.println("Continue rest of the work");
 		 
 	 }
 

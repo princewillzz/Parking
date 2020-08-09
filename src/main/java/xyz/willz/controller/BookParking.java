@@ -46,10 +46,11 @@ public class BookParking extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		final HttpSession session = request.getSession();
+		final BookingInfo bookingInfo = new BookingInfo(request, (AdminParking) session.getAttribute("selectedParking"));
+		
 		try{
 			System.out.println("Post in book Parking");
-			final BookingInfo bookingInfo = new BookingInfo(request, (AdminParking) request.getSession().getAttribute("selectedParking"));
 			// Check Validity
 			if(bookingInfo.valid()) {
 				System.out.println("Booking Information is valid");
@@ -57,21 +58,23 @@ public class BookParking extends HttpServlet {
 				final BookingDao bookingDao = new BookingDao();
 				boolean available = bookingDao.validate(bookingInfo);
 				if(available) {
-					
-					final HttpSession session = request.getSession();
 					session.setAttribute("bookinginfo", bookingInfo);
 					System.out.println(bookingInfo);
 					
 					RequestDispatcher rd = request.getRequestDispatcher("confirmation.jsp");
 					rd.forward(request, response);
 					return;
-					
+				} else {
+					session.setAttribute("message", "No Vacant Spots");
 				}
+			} else {
+				session.setAttribute("message", "Invalid Details");
 			}
 			
 		}catch(Exception e) {
 			System.out.println("Exception in booking");
 		}
+		
 		response.sendRedirect("index.jsp");
 	}
 
