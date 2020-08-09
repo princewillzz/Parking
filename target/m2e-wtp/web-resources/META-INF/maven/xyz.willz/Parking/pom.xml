@@ -38,8 +38,27 @@
 	<artifactId>javaee-api</artifactId>
 		<version>8.0.1</version>
 	</dependency>
+	
+	<!-- PDF dependencies starts -->
+	<dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>7.0.0</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>layout</artifactId>
+      <version>7.0.0</version>
+    </dependency>
+	
+	<dependency>
+	    <groupId>com.itextpdf</groupId>
+	    <artifactId>itextpdf</artifactId>
+	    <version>5.5.10</version>
+	</dependency>
   </dependencies>
-
+	<!-- Pdf Dependency ends -->
   <build>
     <finalName>Parking</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

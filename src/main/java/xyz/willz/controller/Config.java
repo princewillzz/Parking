@@ -15,7 +15,9 @@ public class Config implements ServletContextListener {
 		 System.out.println("Server Started");
 		 //this.setTimerForDb();
 		 
-		System.out.println("Continue rest od the work");
+		 System.out.println("Hii nishi the server is started");
+		 
+		System.out.println("Continue rest of the work");
 		 
 	 }
 
@@ -24,6 +26,7 @@ public class Config implements ServletContextListener {
     	System.out.println("Server shutdown");
     	timer.cancel();
     }
+    
     final private Timer timer = new Timer();
     final private BookingDao bookingDao = new BookingDao();
 	public void setTimerForDb() {

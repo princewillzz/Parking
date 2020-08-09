@@ -172,4 +172,7 @@ public class BookingDao {
 		}
 	}
 	
+	public boolean isEverythingOk() {
+		return this.isEverythingOk;
+	}
 }

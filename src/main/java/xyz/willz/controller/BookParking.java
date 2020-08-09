@@ -1,6 +1,8 @@
 package xyz.willz.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 import xyz.willz.dao.BookingDao;
 import xyz.willz.entities.AdminParking;
@@ -49,19 +57,15 @@ public class BookParking extends HttpServlet {
 				final BookingDao bookingDao = new BookingDao();
 				boolean available = bookingDao.validate(bookingInfo);
 				if(available) {
-					boolean success = bookingDao.makeBooking(bookingInfo);
-					if(!success) {
-						System.out.println("Unsuccessful save");
-						response.sendRedirect("index.jsp");
-						return;
-					}
 					
 					final HttpSession session = request.getSession();
 					session.setAttribute("bookinginfo", bookingInfo);
 					System.out.println(bookingInfo);
+					
 					RequestDispatcher rd = request.getRequestDispatcher("confirmation.jsp");
 					rd.forward(request, response);
 					return;
+					
 				}
 			}
 			

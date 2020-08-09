@@ -25,5 +25,4 @@ public class Hello extends HttpServlet {
 		System.out.println("In Hello");
 	}
 
-
 }

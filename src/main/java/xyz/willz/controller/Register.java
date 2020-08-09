@@ -45,7 +45,7 @@ public class Register extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", username);
-			response.sendRedirect("hello");
+			response.sendRedirect("/Parking");
 			return;
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
